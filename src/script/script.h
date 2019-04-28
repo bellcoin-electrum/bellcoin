@@ -669,6 +669,8 @@ public:
     }
 
 #ifdef ENABLE_BITCORE_RPC
+    bool IsPayToPubkey() const;
+    bool IsPayToPubkeyHash() const;
     bool IsPayToWitnessPubkeyHash() const;
 #endif
 };
