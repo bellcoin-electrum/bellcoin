@@ -10,6 +10,8 @@
 #include <dbwrapper.h>
 #include <chain.h>
 
+#include <validation.h>
+
 #include <map>
 #include <memory>
 #include <string>
