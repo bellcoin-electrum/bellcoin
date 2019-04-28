@@ -132,7 +132,9 @@ static const bool DEFAULT_PERMIT_BAREMULTISIG = true;
 static const bool DEFAULT_CHECKPOINTS_ENABLED = true;
 static const bool DEFAULT_TXINDEX = false;
 #ifdef ENABLE_BITCORE_RPC
-static const bool DEFAULT_ADDRINDEX = false;
+static const bool DEFAULT_ADDRESSINDEX = false;
+static const bool DEFAULT_TIMESTAMPINDEX = false;
+static const bool DEFAULT_SPENTINDEX = false;
 #endif
 static const unsigned int DEFAULT_BANSCORE_THRESHOLD = 100;
 /** Default for -persistmempool */
@@ -175,6 +177,8 @@ extern std::atomic_bool fReindex;
 extern int nScriptCheckThreads;
 #ifdef ENABLE_BITCORE_RPC
 extern bool fAddressIndex;
+extern bool fSpentIndex;
+extern bool fTimestampIndex;
 #endif
 extern bool fTxIndex;
 extern bool fIsBareMultisigStd;
