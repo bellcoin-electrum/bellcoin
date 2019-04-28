@@ -499,7 +499,6 @@ struct CAddressUnspentValue {
         READWRITE(satoshis);
         READWRITE(*(CScriptBase*)(&script));
         READWRITE(blockHeight);
-        READWRITE(coinStake);
     }
 
     CAddressUnspentValue(CAmount sats, CScript scriptPubKey, int height) {
