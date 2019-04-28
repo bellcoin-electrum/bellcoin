@@ -1699,7 +1699,7 @@ DisconnectResult CChainState::DisconnectBlock(const CBlock& block, const CBlockI
                 if (fAddressIndex) {
                     const CTxOut &prevout = view.GetOutputFor(input);
 
-                    if (out.scriptPubKey.IsPayToScriptHash()) {
+                    if (prevout.scriptPubKey.IsPayToScriptHash()) {
                         std::vector<unsigned char> hashBytes(prevout.scriptPubKey.begin()+2, prevout.scriptPubKey.begin()+22);
 
                         // undo spending activity
@@ -1708,7 +1708,7 @@ DisconnectResult CChainState::DisconnectBlock(const CBlock& block, const CBlockI
                         // restore unspent index
                         addressUnspentIndex.push_back(std::make_pair(CAddressUnspentKey(2, uint160(hashBytes), input.prevout.hash, input.prevout.n), CAddressUnspentValue(prevout.nValue, out.scriptPubKey, undo.nHeight)));
 
-                    } else if (out.scriptPubKey.IsPayToPubkeyHash()) {
+                    } else if (prevout.scriptPubKey.IsPayToPubkeyHash()) {
                         std::vector<unsigned char> hashBytes(prevout.scriptPubKey.begin()+3, prevout.scriptPubKey.begin()+23);
 
                         // undo spending activity
@@ -1717,7 +1717,7 @@ DisconnectResult CChainState::DisconnectBlock(const CBlock& block, const CBlockI
                         // restore unspent index
                         addressUnspentIndex.push_back(std::make_pair(CAddressUnspentKey(1, uint160(hashBytes), input.prevout.hash, input.prevout.n), CAddressUnspentValue(prevout.nValue, prevout.scriptPubKey, undo.nHeight)));
 
-                    } else if (out.scriptPubKey.IsPayToPubkey()) {
+                    } else if (prevout.scriptPubKey.IsPayToPubkey()) {
                         std::vector<unsigned char> pubkeyBytes(prevout.scriptPubKey.begin() + 1, prevout.scriptPubKey.end()-1);
 
                         // undo spending activity
@@ -1726,7 +1726,7 @@ DisconnectResult CChainState::DisconnectBlock(const CBlock& block, const CBlockI
                         // restore unspent index
                         addressUnspentIndex.push_back(std::make_pair(CAddressUnspentKey(1, Hash160(pubkeyBytes), input.prevout.hash, input.prevout.n), CAddressUnspentValue(prevout.nValue, prevout.scriptPubKey, undo.nHeight)));
 
-                    } else if (out.scriptPubKey.IsPayToWitnessPubkeyHash()) {
+                    } else if (prevout.scriptPubKey.IsPayToWitnessPubkeyHash()) {
                         std::vector<unsigned char> hashBytes(prevout.scriptPubKey.begin()+2, prevout.scriptPubKey.end());
 
                         // undo spending activity
@@ -1735,7 +1735,7 @@ DisconnectResult CChainState::DisconnectBlock(const CBlock& block, const CBlockI
                         // restore unspent index
                         addressUnspentIndex.push_back(std::make_pair(CAddressUnspentKey(1, uint160(hashBytes), input.prevout.hash, input.prevout.n), CAddressUnspentValue(prevout.nValue, prevout.scriptPubKey, undo.nHeight)));
 
-                    } else if (out.scriptPubKey.IsPayToWitnessScriptHash()) {
+                    } else if (prevout.scriptPubKey.IsPayToWitnessScriptHash()) {
                         std::vector<unsigned char> hashBytes(prevout.scriptPubKey.begin() + 2, prevout.scriptPubKey.end());
 
                         // undo spending activity
