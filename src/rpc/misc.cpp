@@ -6,6 +6,7 @@
 #include <base58.h>
 #include <chain.h>
 #include <clientversion.h>
+#include <consensus/consensus.h>
 #include <core_io.h>
 #include <crypto/ripemd160.h>
 #include <init.h>
