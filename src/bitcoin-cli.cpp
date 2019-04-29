@@ -342,17 +342,12 @@ int CommandLineRPC(int argc, char *argv[])
         }
         std::unique_ptr<BaseRequestHandler> rh;
         std::string method;
-        if (gArgs.GetBoolArg("-getinfo", false)) {
-            rh.reset(new GetinfoRequestHandler());
-            method = "";
-        } else {
-            rh.reset(new DefaultRequestHandler());
-            if (args.size() < 1) {
-                throw std::runtime_error("too few parameters (need at least command)");
-            }
-            method = args[0];
-            args.erase(args.begin()); // Remove trailing method name from arguments vector
+        rh.reset(new DefaultRequestHandler());
+        if (args.size() < 1) {
+            throw std::runtime_error("too few parameters (need at least command)");
         }
+        method = args[0];
+        args.erase(args.begin()); // Remove trailing method name from arguments vector
 
         // Execute and handle connection failures with -rpcwait
         const bool fWait = gArgs.GetBoolArg("-rpcwait", false);
