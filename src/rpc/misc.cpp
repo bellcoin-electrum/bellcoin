@@ -153,7 +153,7 @@ public:
 };
 #endif
 
-# ENABLE_BITCORE_RPC
+#ifdef ENABLE_BITCORE_RPC
 UniValue getinfo(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 0)
